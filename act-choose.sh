@@ -29,5 +29,5 @@ two=$two$s
 cat activities.csv | sed -iE "$one" activities.csv #overwrite last date for act 1 with today's date
 cat activities.csv | sed -iE "$two" activities.csv #overwrite last date for act 2 with today's date
 cat activities.csv | sort -o activities.csv
-cp activities.csv /archive/activities$date.csv
+cp activities.csv ~/scripts/archive/activities$date.csv
 IFS=$OLDIFS
