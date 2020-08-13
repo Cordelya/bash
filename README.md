@@ -13,3 +13,10 @@ Your *activities.csv* file contents should be formatted as
 where YYYYMMDD is a date in the past (so you can start using it today) and $activity is an activity you would like added to the pool of choices. Each new activity goes on a new line. You need at least 20 lines for this to work (or you need to edit the script to apply a different %) and it will work better if there are about 30 lines - because any activity you do will sit below line 20 for several days, and therefore is guaranteed to not be chosen. Because we all know that boredom kills, right?
 
 This script won't give you a second chance to generate activities, but if you absolutely must, you can copy the previous day's archive file over *activities.csv* and it will be like you haven't run it yet.
+
+## packages.sh
+This script queries and builds a file containing your locally installed packages, grabs and refines the manifest of the version of your default OS (built for Ubuntu, may need tweaking for other OSs), and builds a new file, *custompackages.txt* that contains only packages that are installed but not on the manifest. 
+
+If you lose your install or are expanding to a new machine, and you have an uploaded or backed up copy of *custompackages.txt*, it'll give you a list of packages you'll want to consider installing on a new build.
+
+See https://unix.stackexchange.com/questions/3595/list-explicitly-installed-packages/3624#3624 for an explanation of how this works.
