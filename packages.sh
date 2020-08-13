@@ -1,7 +1,8 @@
-!/bin/bash
+#!/bin/bash
 
 # Updates the list of installed packages that are not part of the base Ubuntu release
 # The manifest version needs to be verified occasionally to make sure that it reflects the current version
+# Based on a snippet found at https://unix.stackexchange.com/questions/3595/list-explicitly-installed-packages/3624#3624
 
 # First we ask aptitude to make a list of all currently installed packages
 aptitude search '~i !~M' -F '%p' --disable-columns | sort -u > currentlyinstalled.txt
