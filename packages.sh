@@ -20,14 +20,9 @@ dir=$HOME"/scripts/packages/"
 loc=$dir'local.txt'
 default=$dir'default.txt'
 custom=$dir'packages.txt'
+temp=$dir'temp.txt'
 url='https://releases.ubuntu.com/20.04/ubuntu-20.04.1-desktop-amd64.manifest'
-
-# debug block
-echo "local filename $loc"
-echo "default filename $default"
-echo "custom filename $custom"
-echo "url"
-
+date=$(date +%Y-%m-%d)
 
 # First we ask aptitude to make a list of all currently installed packages
 aptitude search '~i !~M' -F '%p' --disable-columns | sort -u > $loc
@@ -37,10 +32,14 @@ aptitude search '~i !~M' -F '%p' --disable-columns | sort -u > $loc
 manifest
 
 # Then we compare the two files and produce a third file which only includes packages unique to the local system
-comm -23 $loc $default > $custom
+comm -23 $loc $default > $custom 
+# Add a note to the top of the filtered list
+echo 'Post-install Software Manifest built on' $date | cat - $custom > $temp && mv $temp $custom
 
 # File cleanup because we no longer need these
 rm $loc
 
-echo "Based on Ubuntu 20.04.1 Desktop AMD-64 Manifest. If we are using a later version, update this script with an updated manifest url"
+echo "Based on Ubuntu 20.04.1 Desktop AMD-64 Manifest." 
+echo "If using a later version of Ubuntu, please update this script with an"
+echo "updated manifest url."
 
