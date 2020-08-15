@@ -40,7 +40,7 @@ manifest
 comm -23 $loc $default > $custom
 
 # File cleanup because we no longer need these
-# rm $loc
+rm $loc
 
 echo "Based on Ubuntu 20.04.1 Desktop AMD-64 Manifest. If we are using a later version, update this script with an updated manifest url"
 
