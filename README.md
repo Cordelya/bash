@@ -20,3 +20,8 @@ This script queries and builds a file containing your locally installed packages
 If you lose your install or are expanding to a new machine, and you have an uploaded or backed up copy of *custompackages.txt*, it'll give you a list of packages you'll want to consider installing on a new build.
 
 See https://unix.stackexchange.com/questions/3595/list-explicitly-installed-packages/3624#3624 for an explanation of how this works.
+
+## gauge.sh
+This script pulls river gauge data from https://waterservices.usgs.gov/, extracts the data from the xml, filters it to one reading per day, chops off the date/time, and displays the resulting readings using sparklines. Depends on https://github.com/holman/spark for the sparklines and non-standard package xml-twig-tools for xml_grep. The script defaults to the Lower Mississippi River Carrollton Gauge. You can use it as-is for some New Orleans flavor or roll your own gauge data-pull at the Water Services site.
+
+A planned feature: display spark bars in red whenever the gauge value exceeds 8. (Why 8? There is a "high water" threshhold at 8 feet which changes how USACE and USCG operate in terms of Mississippi River Operations, and it affects marine traffic)
