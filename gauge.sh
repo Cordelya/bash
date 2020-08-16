@@ -12,19 +12,20 @@ search=(./gauge/*.xml)
 old=()
 temp=("$HOME"/scripts/gauge/temp.txt)
 
-if [ $(find . -wholename "$search" -print) ]
-then old=$(find . -wholename "$search" -mtime 0 -print)
+# Check to see if we have fresh data
+if [ $(find . -wholename "$search" -mtime 0 -print) ]
+  then 
+    old=$(find . -wholename "$search" -mtime 0 -print)
+    xml_grep "wml2:MeasurementTVP" "$old" --text_only > "$txt"
+    # TODO remove this debug line
+    echo "Found fresh data" 
+  else
+    echo "Requesting fresh data!"  
+    wget -q -O $xml $url # then request an updated copy
+    # Use xml_grep to pull just the data we want - the date/time and the 
+    # gauge readings
+    xml_grep "wml2:MeasurementTVP" "$xml" --text_only > "$txt"
 fi
-# raw data retrieval (not more than once per day)
-if [[ $old != $xml ]]  #if existing file is not from today
-then
-wget -q -O $xml $url # then request an updated copy
-fi
-
-# Use xml_grep to pull just the data we want - the date/time and the 
-# gauge readings
-xml_grep "wml2:MeasurementTVP" "$xml" --text_only > "$txt"
-
 # Prepend some descriptive text
 echo 'Carrollton Gauge Last 28 Days'
 
