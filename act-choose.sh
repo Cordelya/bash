@@ -18,8 +18,8 @@ $two++
 fi
 echo "Second Roll: $two"      #Display the result of die 2
 p="p"
-first=$(sed -n '$one$p' < "$act") # Display the corresponding line in the file
-second=$(sed -n '$two$p' < "$act") # Display the corresponding line in the file
+first=$(sed -n "$one$p" "$act") # Display the corresponding line in the file
+second=$(sed -n "$two$p" "$act") # Display the corresponding line in the file
 echo $first
 echo $second
 
