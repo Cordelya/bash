@@ -2,10 +2,10 @@
 
 OLDIFS=$IFS                   #preserve the default IFS
 IFS=';'                       #set IFS to use ; 
-date=$(date %Y%m%d)
+date=$(date +"%Y%m%d")
 # set some file path variables
-act=$("$HOME"/scripts/activities/activities.csv)
-archive=$("$HOME"/scripts/activities/activities"$date".csv)
+act=("$HOME"/scripts/activities/activities.csv)
+archive=("$HOME"/scripts/activities/activities"$date".csv)
 
 one=$RANDOM                   #Roll die 1
 one="$(($one % 20))"
@@ -17,9 +17,9 @@ echo "oops, I rolled the same number twice!"
 $two++
 fi
 echo "Second Roll: $two"      #Display the result of die 2
-
-first=$(sed -n '"$one"p' < "$act") # Display the corresponding line in the file
-second=$(sed -n '"$two"p' < "$act") # Display the corresponding line in the file
+p="p"
+first=$(sed -n '$one$p' < "$act") # Display the corresponding line in the file
+second=$(sed -n '$two$p' < "$act") # Display the corresponding line in the file
 echo $first
 echo $second
 
