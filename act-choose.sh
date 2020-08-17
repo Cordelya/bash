@@ -35,6 +35,8 @@ case $yn in
   * ) break;;
 esac
 done
+# sort the file in case we were adding to a file with previous lines
+cat "$act" | sort -o "$act" 
 return
 
 }
