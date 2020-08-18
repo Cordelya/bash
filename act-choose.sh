@@ -1,4 +1,4 @@
-#!/usr/bin/bash -x
+#!/usr/bin/bash
 
 OLDIFS=$IFS                   #preserve the default IFS
 IFS=';'                       #set IFS to use ; 
