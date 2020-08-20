@@ -1,5 +1,14 @@
 #!/usr/bin/bash
 
+
+OLDIFS=$IFS                   #preserve the default IFS
+IFS=';'                       #set IFS to use ; 
+date=$(date +"%Y%m%d")
+# set some file path variables
+path=("$HOME"/scripts/activities/)
+act=("$HOME"/scripts/activities/activities.csv)
+archive=("$HOME"/scripts/activities/activities"$date".csv)
+
 # ========= #
 # Functions #
 # ========= #
@@ -40,14 +49,6 @@ cat "$act" | sort -o "$act"
 return
 
 }
-
-OLDIFS=$IFS                   #preserve the default IFS
-IFS=';'                       #set IFS to use ; 
-date=$(date +"%Y%m%d")
-# set some file path variables
-path=("$HOME"/scripts/activities/)
-act=("$HOME"/scripts/activities/activities.csv)
-archive=("$HOME"/scripts/activities/activities"$date".csv)
 
 # ================ #
 #   Housekeeping   #
