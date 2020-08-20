@@ -55,7 +55,7 @@ return
 # ================ #
 
 # Does activities.csv exist?
-$find="find . -name $path 'activities.csv'"
+find="find . -name $path 'activities.csv'"
 case "$find" in
   0 ) return ;;
   1 ) new ;;
