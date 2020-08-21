@@ -9,7 +9,6 @@ url="https://waterservices.usgs.gov/nwis/iv/?format=waterml,2.0&sites=07374510&p
 xml=("$HOME"/scripts/gauge/"$(date +%m%d)".xml) # where we store the raw data, relative to $HOME
 txt=("$HOME"/scripts/gauge/gauge.txt) # where we store the extracted data, rel 2 $HOME
 search=(./gauge/*.xml)
-old=()
 temp=("$HOME"/scripts/gauge/temp.txt)
 
 # Check to see if we have fresh data
@@ -31,10 +30,18 @@ echo 'Carrollton Gauge Last 28 Days'
 
 # Use grep to pull only the 8:00 a.m. readings, because once 
 # per hour for two weeks is too much, but once daily is very nice.
+
+# Pre-populate temp with scale numbers
+touch $temp
+echo "17" | tee -a $temp > /dev/null
+echo "2" | tee -a $temp > /dev/null
 # Use cut to remove the date/time portion because now it isn't needed
+
+grep 'T08:00:00-' $txt | cut -c 1-25 --complement >> $temp 
+
 # Store result back into $txt
-grep 'T08:00:00-' $txt | cut -c 1-25 --complement > $temp 
 mv "$temp" "$txt"
+
 cat "$txt" | spark # display the data in a sparkline
 
 # safely find and delete any xml files older than 1 day
