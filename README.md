@@ -1,6 +1,8 @@
 # bash
 Cordelya's Collected Bash Scripts
 
+## This repository has moved to GitLab. Please visit [Cordelya's GitLab](https://gitlab.com/cordelya) and you'll find the active project there.
+
 ## act-choose.sh
 I wrote this script to randomly select two activities from a pool of possible activities. For me, this means a mix of leisure reading, personal care, educational activities, practicing things I'm learning, and doing non-urgent chores that can be done on a relaxed schedule. These activities (for me) are intended to be done for 30 minutes to 2 hours, with the option to set a timer to keep from spending all day doing one thing. This can be helpful for people who experience decision-gridlock, where too many choices mean they choose nothing and sit around surfing Twitter (cough).
 
